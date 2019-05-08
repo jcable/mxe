@@ -18,9 +18,7 @@ define $(PKG)_UPDATE
 endef
 
 define $(PKG)_BUILD
-    # build
-    cd '$(1)' && $(PREFIX)/$(TARGET)/$($(PKG)_QT_DIR)/bin/qmake
-    $(MAKE) -C '$(1)' -f 'Makefile.Release' -j '$(JOBS)' install
-    cp $(PKG).exe /opt/mxe
-
+    cd $(BUILD_DIR) && $(PREFIX)/$(TARGET)/$($(PKG)_QT_DIR)/bin/qmake $(SOURCE_DIR)/dream.pro
+    cd $(BUILD_DIR) && $(MAKE) -f 'Makefile.Release' -j '$(JOBS)'
+    cd $(BUILD_DIR) && $(MAKE) -f 'Makefile.Release' -j '$(JOBS)' install
 endef
